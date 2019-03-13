@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .div1{
+            color: red;
+        }
+        #div2{
+            color: yellow;
+            background: blue
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        {{date}}<br>
+        {{date | filterDate}}<br>
+        {{apple}}<br>
+        <span v-text='apple'></span><br>
+        <span v-html='banana'></span><br>
+        <!-- <div class={{classname}}>div</div>
+        <div id={{idname}}>div</div> -->
+        <div v-bind:class="classname">classdiv</div>
+        <div v-bind:id="idname">iddiv</div>
+        <button v-on:click="plus" v-text='num'></button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        var timePlus = function(value){
+            if(value<10){
+                return '0'+ value
+            }
+            else{
+                return value
+            }
+        }
+        var app = new Vue({
+            el: '#box',
+            data: {
+                date: new Date(),
+                apple: 'v-text测试',
+                banana: '<span style="color:red">v-html测试</span>',
+                classname: 'div1',
+                idname: 'div2',
+                num:'0'
+            },
+            filters:{
+                filterDate: function(value){
+                    var year = value.getFullYear()
+                    var month = value.getMonth()+1
+                    var day = value.getDate()
+                    var hours = value.getHours()
+                    var mins = value.getMinutes()
+                    var sec = value.getSeconds()
+                    return year+'/'+timePlus(month)+'/'+timePlus(day)+'/'+-timePlus(hours) +'/'+ timePlus(mins)+'/'+timePlus(sec)
+                }
+            },
+            methods:{
+                plus: function(){
+                    this.num++
+                }
+            },
+            mounted:function(){
+                var _this = this
+                this.timer = setInterval(function(){
+                    _this.date = new Date()
+                },1000)
+            },
+            beforeDestroy:function(){
+                alert(1)
+                if(this.timer){
+                    clearInterval(this.timer)
+                }
+            }
+        })
+    
+    </script>
+</body>
+</html>
