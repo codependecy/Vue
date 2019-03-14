@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">{{fullname}}<br>
+        {{now}}<br>
+        {{ time() }}
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#box',
+            data: {
+                firstname: 'vue实例',
+                lastname: '学习',
+                Date: new Date()
+            },
+            computed:{
+                fullname: {
+                    // 默认只会执行我们的get方法，只有当手动修改数据的值的时候我们才会出发setter函数。
+                    get:function(){
+                        return this.firstname+' '+this.lastname
+                    },
+                    set:function(value){
+                        console.log('set方法执行')
+                        this.firstname = value
+                    }
+                },
+                now:function(){
+                    return Date.now()
+                }
+            },
+            methods:{
+                time: function(){
+                    return Date.now()
+                }
+            }
+        });
+        
+
+        
+    </script>
+
+</body>
+</html>
