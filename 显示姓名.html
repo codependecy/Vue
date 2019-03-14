@@ -35,6 +35,9 @@
                     return Date.now()
                 }
             },
+            //当页面重新渲染之后，methods里面的方法就会重新执行。
+            // 如果没有渲染，就不会执行。
+
             methods:{
                 time: function(){
                     return Date.now()

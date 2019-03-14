@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #div{
+            color: red
+        }
+        #div span{
+            background: black
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        {{reverse1}}计算属性翻转<br>
+        {{reverse2()}}方法翻转<br>
+    </div>
+    <div id="div">
+        修改app1.firstName/lastName来改变fullname:<span>{{fullName}}</span><br>
+        计算属性方法实现改变fullname:<span>{{fullname}}</span>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        var app1 = new Vue({
+            el: '#div',
+            data: {
+                firstName: 'He',
+                lastName: 'Can',
+                fullName: ''
+            },
+            watch: {
+                firstName: function(){
+                    return this.fullName = this.firstName + this.lastName
+                },
+                lastName:function(){
+                    return this.fullName = this.firstName + this.lastName
+                }
+            },
+            computed:{
+                fullname: function(){
+                    return this.firstName+ this.lastName
+                }
+            }
+        })
+
+
+
+        var app = new Vue({
+            el: '#box',
+            data: {
+                msg : "this is the new Vue"
+            },
+            computed:{
+                reverse1: function(){
+                    var newMsg = this.msg.split('').reverse().join('')
+                    return newMsg
+                }
+            },
+            methods:{
+                reverse2:function(){
+                    var newMsg = this.msg.split('').reverse().join('')
+                    return newMsg
+                }
+            }
+        })
+    </script>
+</body>
+</html>

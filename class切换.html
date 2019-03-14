@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            border: 10px solid yellow;
+        }
+        .blue{
+            background: blue;
+        }
+        .red{
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="div">
+            <div class="box" v-bind:class='{blue:BLUE,red:RED}'></div>
+            <button v-on:click='onClick'>点击切换颜色</button>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '.div',
+            data: {
+                BLUE: false,
+                RED: false
+            },
+            computed:{
+                classname: function(){
+                    return 
+                }
+            },
+            methods: {
+                onClick: function(){
+                    if(!this.BLUE && !this.RED){
+                        this.BLUE = true
+                    }else if(this.BLUE){
+                        this.RED = true
+                        this.BLUE = false
+                    }else if(this.RED){
+                        this.BLUE = true
+                        this.RED = false
+                    }
+                }
+            },
+        })
+    </script>
+</body>
+</html>
