@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+        }
+        #box p{
+            display: none;
+            font-size: 30px;
+        }
+        .active{
+            display: block;
+        }
+        .color1{
+            color: lightgreen;
+        }
+        .color{
+            color: lightcoral;
+        }
+
+        #box1{
+            width: 200px;
+            height: 200px;
+            background: lightblue;
+            text-align: center;
+            line-height: 200px;
+        }
+        #box1.back{
+            background: lightcoral;
+        }
+        .border{
+            border: 10px solid lightseagreen;
+        }
+        .background{
+            background: lightgreen
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <p v-bind:class="class1">我是变量语法</p>
+        <p v-bind:class="[class1,color1]">我是数组语法</p>
+        <p v-bind:class="{active:isActive}">我是对象语法</p>
+    </div>
+    <div id="box1" v-bind:class="{back: isChange}" v-on:click='onClick'>
+        点击切换背景
+    </div>
+    <div id="box2" v-bind:class="[borderClass,backgroundClass]">
+            有边框有背景
+        </div>
+        <div id="box3" v-bind:style="background">绑定style</div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        // var app = new Vue({
+        //     el: '#box',
+        //     data: {
+        //         class1: 'active',
+        //         color1: 'color',
+        //         isActive: true
+        //     }
+        // })
+        // var app1 = new Vue({
+        //     el: "#box1",
+        //     data: {
+        //         isChange: true
+        //     },
+        //     methods: {
+        //         onClick: function(){
+        //                 this.isChange = !this.isChange
+        //         }
+        //     }
+        // })
+    
+            // var app2 = new Vue({
+            //     el: '#box2',
+            //     data: {
+            //         borderClass: 'border',
+            //         backgroundClass: 'background'
+            //     }
+            // })
+            var app3 = new Vue({
+                el: '#box3',
+                data: {
+                    background:  'background: red'
+                }
+            })
+
+
+    </script>
+</body>
+</html>
