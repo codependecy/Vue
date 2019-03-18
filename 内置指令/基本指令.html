@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        [v-cloak] {
+            display: none
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        v-cloak 防止页面闪烁，一般和[v-cloak]{display:none}一起使用<br>
+        <span v-cloak>{{msg}}</span><hr>
+        v-once   只会渲染一次，不管作何更改，都不会改变<br>
+        <span v-once>{{message}}</span>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#box',
+            data: {
+                msg: '这里是v-cloak渲染',
+                message: '可以改变的信息'
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        {{msg}}<br>
+        {{ 6>3 ? msg:a }}  
+    
+    
+    
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#box',
+            data: {
+                msg: 'vue实例'
+            },
+            // 生命周期钩子
+            created:function(){
+                alert('刚刚创建，尚未挂载')
+            },
+                mounted:function(){
+                alert('挂载完成，等待渲染')
+            }
+
+        });
+        console.log(app.$el,app.$data.msg)
+    
+        
+        
+
+        
+    </script>
+
+</body>
+</html>
