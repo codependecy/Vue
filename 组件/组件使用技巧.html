@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        <button @click='count++'>{{count}}</button>
+        <button @click='count++'>{{count}}</button><br><br><br><br><br><br>
+        <on-click></on-click><on-click></on-click>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#box',
+            data: {
+                count: 0
+            },
+            components: {
+                'on-click':{
+                    template: "<button @click='onClick()'>{{num}}</button>",
+                    data: function(){
+                        return {
+                            num : 0                    
+                        }
+                    },
+                    methods: {
+                        onClick: function(){
+                            this.num++
+                            console.log(this.num)
+                        }
+                    }
+                },
+            }
+        })
+    </script>
+</body>
+</html>
