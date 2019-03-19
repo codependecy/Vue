@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        <input type="text" v-model='msg'>{{msg}}<br><br><br><br><br>
+        <input type="checkbox" v-model='checkboo'>{{checkboo}}
+        <br><br><br><br><br>
+        猫<input type="checkbox" v-model='text' value="cat">
+        狗<input type="checkbox" v-model='text' value="dog">
+        热狗<input type="checkbox" v-model='text' value="hot-dog"><br>
+        {{text}}<br><br><br>
+        <input type="radio" value='鼠' name='radio' v-model='radios'>鼠
+        <input type="radio" value='牛' name='radio' v-model='radios'>牛
+        <input type="radio" value='虎' name='radio' v-model='radios'>虎<br>
+        现在选中了{{radios}}
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#box',
+            data: {
+                msg: '请输入内容',
+                checkboo: 'true',
+                text: [],
+                value1: '猫',
+                value2: '狗',
+                value3: '热狗',
+                radios: ''
+            }
+        })
+    </script>
+</body>
+</html>
