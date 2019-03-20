@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box1 div{
+            border: 10px solid lightcoral;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        width:<input type="text" name='width' v-model='wid'>{{wid}}
+        height:<input type="text" name='height' v-model='hei'>
+        background:<input type="text" name='back' v-model='back'>
+        <my-com v-bind:wid='hei'></my-com>
+    </div>
+    <div id="box1">
+        v-model/v-bind测试
+        <input type="text" v-model="boxwidth"></input>
+        <input type="text" v-model="boxheight"></input>
+        <input type="text" v-model="back" placeholder="请使用rgb值设置颜色"></input>
+        <!-- <div v-bind:style='style'></div><br><br> -->
+        <my-app :css='css' :boxwid='boxwidth' :boxhei='boxheight' :boxback='back'></my-app>
+        <!-- css是属性名，boxwidth是属性值 -->
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        var app1 = new Vue({
+            el: '#box1',
+            data: {
+                boxwidth: '1',
+                boxheight: '1',
+                back: '',
+                css: ''
+            },
+            components:{
+                'my-app': {
+                    props: ['css','boxwid','boxhei','boxback'],
+                    template: "<div :style='style'>这里是模板</div>",
+                    computed: {
+                        style: function(){
+                            console.log(this.boxwid)
+                            return {
+                                width:this.boxwid+'px',
+                                height:this.boxhei+'px',
+                                background:'#'+this.boxback
+                            }
+                        }
+                    }
+                }
+            },
+            // computed: {
+            //     style: function(){
+            //         return {
+            //             width:this.boxwidth+'px',
+            //             height:this.boxheight+'px',
+            //             background:'#'+this.back
+            //         }
+            //     }
+            // }
+        })
+        //输入文字，改变我们的div
+        // 1. 获取输入框中输入的内容
+        var app = new Vue({
+            el:'#box',
+            data:{
+                wid: '',
+                hei: '',
+                back: '',
+                newstyle: ''
+            },
+            components: {
+                'my-com':{
+                    props:['wid'],
+                    template: "<div :style='style'>这里是</div>",
+                    computed: {
+                        style: function(){
+                            return {
+                                width: this.wid +'px'
+                            }
+                        }
+                    }
+                }
+            }
+        })
+    
+    </script>
+</body>
+</html>
