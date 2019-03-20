@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box1 div{
+            border: 1px solid lightgreen;
+            margin: 0 auto;
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            text-align: center
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <my-com></my-com><br><br><br><br>
+        <div id="box1" style="border: 10px solid lightcoral">
+            <input type="text" v-model='youmsg'>{{youmsg}}
+            <you-com v-bind:mymsg='youmsg'></you-com>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#box',
+            data: {
+                msg: '这里能不能被显示',
+                youmsg: '请输入文字'
+            },
+            components: {
+                'my-com': {
+                    template: '<div>{{msg}}</div>',
+                    data: function(){
+                        return {msg: '新创建的msg对象'}
+                    }
+                },
+                'you-com':{
+                    props: ['mymsg'],
+                    template: '<div>{{mymsg}}</div>',
+                }
+            }
+        })
+    
+    </script>
+</body>
+</html>
