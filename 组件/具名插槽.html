@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        
+        <one>
+                <h3 slot='header'>这里是标题</h3>
+                <p slot='main'>这里是内容</p>
+                <footer slot='footer'>这里是结尾</footer>
+        </one>
+    </div>
+    
+    
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+        <script>
+            var app = new Vue({
+                el: '#box',
+                data: {
+
+                },
+                components: {
+                    'one': {
+                        template: '<div><div>\
+        <slot name="header"></slot>\
+    </div><div>\
+        <slot name="main"></slot>\
+    </div>\
+    <div>\
+        <slot name="footer"></slot>\
+    </div></div>'
+                    }
+                }
+            })
+        
+        </script>
+</body>
+</html>

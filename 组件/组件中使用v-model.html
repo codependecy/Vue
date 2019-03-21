@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 400px;
+            height:400px;
+            border: 10px solid lightgreen;
+            margin: 0 auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        银行存款:{{money}}
+        <my-money v-model='money'></my-money>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#box',
+            data: {
+                money: 0
+            },
+            methods:{
+            },
+            components: {
+                'my-money': {
+                    template: "<div><button @click='plus'>+1000</button><button @click='less'>-1000</button></div>",
+                    data:function(){
+                        return{
+                            num:0
+                        }
+                    },
+                    methods: {
+                        plus: function(value){
+                            this.num+=1000
+                            this.$emit('input',this.num)
+                        },
+                        less: function(value){
+                            this.num-=1000
+                            this.$emit('input',this.num)
+                        },
+                    }
+                }
+
+            }
+        })
+    </script>
+</body>
+</html>
