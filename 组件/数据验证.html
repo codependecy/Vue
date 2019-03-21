@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+            <my-Con :a='a'></my-Con>
+    </div>
+    <div id="box1">
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        Vue.component('myCon',{
+            props: {
+                a: String,
+                b: {
+                    // required: true
+                },
+                },
+            template: '<div>{{a}}---{{b}}</div>',
+            
+        })
+        var app = new Vue({
+            el: '#box',
+            data: {
+                a: '1',
+                b: '1'
+            }
+        })
+    </script>
+</body>
+</html>
