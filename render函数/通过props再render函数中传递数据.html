@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        <button @click='switchclick'>切换图片</button>
+        <child :show='show'></child>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        Vue.component('child',{
+            props: ['show'],
+            render:function(createElement){
+                var imgsrc;
+                if(this.show){
+                    imgsrc = 'http://pic.58pic.com/58pic/15/68/59/71X58PICNjx_1024.jpg'
+                }else{
+                    imgsrc = 'http://pic24.nipic.com/20120906/2786001_082828452000_2.jpg'
+                }
+                return createElement('img',{
+                    attrs: {
+                        src: imgsrc
+                    }
+                })
+            }
+        })
+        var app = new Vue({
+            el: '#box',
+            data: {
+                level: 1,
+                show: true
+            },
+            methods: {
+                switchclick: function(){
+                    this.show=!this.show
+                }
+            }
+        })
+    </script>
+</body>
+</html>

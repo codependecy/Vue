@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        <child :level='level'>这里是render函数</child>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        Vue.component('child',{
+            props: ['level'],
+            render:function(createElement){
+                return createElement(
+                    // 'div',
+                    {
+                    template: '<div>这里是函数的第二个参数</div>'
+                },
+                // {
+                //     'class': {
+                //         foo: true
+                //     },
+                //     style: {
+                //         color: 'red',
+                //         fontSize: '30px'
+                //     },
+                //     domProps: {
+                //         innerHTML: '<span>这里是domprops</span>'
+                //     }
+                // },
+                [
+                    createElement('span','这里是第三个参数')
+                ])
+            }
+        })
+        var app = new Vue({
+            el: '#box',
+            data: {
+                level: 1
+            }
+        })
+    </script>
+</body>
+</html>

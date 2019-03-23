@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        <child>
+            <p>这里是内容</p>
+            <h1 slot='header'>这里是标题</h1>
+            <h2 slot='footer'>这里是小标题</h2>
+        </child>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        Vue.component('child',{
+            render:function(createElement){
+                var header = this.$slots.header
+                var footer = this.$slots.footer
+                var main = this.$slots.default
+                return createElement('div',[
+                    createElement('main',main),
+                    createElement('header',header),
+                    createElement('footer',footer)
+                ])
+            }
+        })
+        var app = new Vue({
+            el: '#box',
+            data: {
+            }
+        })
+    </script>
+</body>
+</html>
